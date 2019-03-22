@@ -21,14 +21,14 @@ git clone https://github.com/ricardozanini/elastic-hq-openshift.git
 
 ```shell
 oc project logging
-oc process -f elastic-hq-openshift/openshift/elastic-hq-template.yaml | oc process -f -
+oc process -f elastic-hq-openshift/openshift/elastic-hq-template.yaml | oc apply -f -
 ```
 
 Without Github access:
 
 ```shell
 oc project logging
-oc process -f elastic-hq-openshift/openshift/elastic-hq-template.yaml PROXY_GIT_REPO=<your-repo-url> | oc process -f -
+oc process -f elastic-hq-openshift/openshift/elastic-hq-template.yaml PROXY_GIT_REPO=<your-repo-url> | oc apply -f -
 ```
 
 4. A new build should start, otherwise just run
