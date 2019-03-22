@@ -168,7 +168,7 @@ objects:
   kind: BuildConfig
   metadata:
     labels:
-      app: ${NAME}-proxy
+      app: ${NAME}
     name: ${NAME}-proxy
     namespace: ${LOGGING_NAMESPACE}
   spec:
