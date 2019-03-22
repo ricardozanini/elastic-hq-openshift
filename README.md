@@ -37,3 +37,5 @@ oc process -f elastic-hq-openshift/openshift/elastic-hq-template.yaml PROXY_GIT_
 oc start-build elastic-hq-proxy
 ```
 
+5. Now, access the ElasticHQ application using the route created by the template and connect to `http://localhost:8080`. Voilá! You have your ElasticSearch monitored.
+
