@@ -1,6 +1,6 @@
 # ElasticHQ on OpenShift
 
-In this repository you'll find a ready to use (ElasticHQ)[https://github.com/ElasticHQ/elasticsearch-HQ] application to deploy in your OpenShift cluster for internal ElasticSearch monitoring.
+In this repository you'll find a ready to use [ElasticHQ](https://github.com/ElasticHQ/elasticsearch-HQ) application to deploy in your OpenShift cluster for internal ElasticSearch monitoring.
 
 ## How to use
 
