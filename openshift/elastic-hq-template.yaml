@@ -12,12 +12,22 @@ parameters:
     description: The name of where the logging ElasticSearch is deployed.
     value: logging
     required: true
-  - name: ES_SVC_NAME
-    displayName: ElasticSearch Logging service name
-    value: logging-es
   - name: ES_SECRET_NAME
     displayName: ElasticSearch Logging secret name
     value: logging-elasticsearch
+    required: true
+  - name: PROXY_GIT_REPO
+    displayName: Git repo for NGINX Proxy application
+    value: 
+    required: true
+  - name: PROXY_GIT_REF
+    displayName: Git reference branch
+    value: master
+    required: true
+  - name: PROXY_GIT_CONTEXT
+    displayName: Context dir where the application are.
+    value: elastic-hq-proxy
+    required: true
 objects:
 - apiVersion: v1
   kind: Service
@@ -80,9 +90,6 @@ objects:
         - image: ${NAME}-proxy:latest 
           imagePullPolicy: Always
           name: ${NAME}-proxy
-          env:
-            - name: ES_SVC_URL
-              value: https://${ES_SVC_NAME}.${NAME}.svc.cluster.local:9200
           ports:
           - containerPort: 8080
             protocol: TCP
@@ -179,7 +186,7 @@ objects:
       git:
         uri: "https://github.com/ricardozanini/elastic-hq-openshift"
         ref: "master"
-      contextDir: "openshift"
+      contextDir: "elastic-hq-proxy"
     strategy:
       type: Source
       sourceStrategy:
