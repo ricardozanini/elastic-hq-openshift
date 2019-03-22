@@ -164,32 +164,33 @@ objects:
       app: ${NAME}-proxy
     name: ${NAME}-proxy
     namespace: ${LOGGING_NAMESPACE}
-    spec:
-      failedBuildsHistoryLimit: 5
-      nodeSelector: null
-      output:
-        to:
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${NAME}-proxy:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      type: Git
+      git:
+        uri: "https://github.com/ricardozanini/elastic-hq-openshift"
+        ref: "master"
+      contextDir: "openshift"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
           kind: ImageStreamTag
-          name: ${NAME}-proxy:latest
-      postCommit: {}
-      resources: {}
-      runPolicy: Serial
-      source:
-        git:
-          uri: "https://github.com/ricardozanini/elastic-hq-openshift"
-          ref: "master"
-        contextDir: "openshift"
-      strategy:
-        sourceStrategy:
-          from:
-            kind: ImageStreamTag
-            name: nginx-114-rhel7:latest
-        type: Source
-      successfulBuildsHistoryLimit: 5
-      triggers:
-      - type: ConfigChange
-      - imageChange:
-        type: ImageChange
+          name: nginx-114-rhel7:latest
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - type: ConfigChange
+    - imageChange:
+      type: ImageChange
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
